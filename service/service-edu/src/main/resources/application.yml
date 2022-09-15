@@ -1,0 +1,17 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: service-edu
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/guli_edu?serverTimezone=Asia/Shanghai
+    username: root
+    password: '#2018iGwin'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

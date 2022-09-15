@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<modules>
-		<module>service</module>
-	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<modules>
+		<module>service</module>
+	</modules>
 	<groupId>com.atguigu</groupId>
 	<artifactId>guli-parent</artifactId>
 	<packaging>pom</packaging>
@@ -157,7 +157,7 @@
 			<dependency>
 				<groupId>com.aliyun</groupId>
 				<artifactId>aliyun-java-vod-upload</artifactId>
-				<version>${aliyun-java-vod-upload.version}</version>
+				<version>${aliyun-java-vod-upload.version}}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.aliyun</groupId>
