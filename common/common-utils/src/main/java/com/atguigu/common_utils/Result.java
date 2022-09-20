@@ -1,5 +1,6 @@
 package com.atguigu.common_utils;
 
+import lombok.Builder;
 import lombok.Data;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @Date 20/9/2022 下午3:32
  */
 @Data
+@Builder
 public class Result {
 
     private boolean success;
@@ -35,9 +37,20 @@ public class Result {
     }
 
     @NotNull
+    public static Result fail(int code, String msg) {
+        return new Result(false, code, msg, null);
+    }
+
+    @NotNull
+    @Contract("_ -> new")
+    public static Result fail(String msg) {
+        return new Result(false, ResultCode.FAIL.getCode(), msg, null);
+    }
+
+    @NotNull
     @Contract(" -> new")
     public static Result fail() {
-        return new Result(false, ResultCode.FAIL.getCode(), "fail", null);
+        return new Result(false, ResultCode.SUCCESS.getCode(), "fail", null);
     }
 
 }

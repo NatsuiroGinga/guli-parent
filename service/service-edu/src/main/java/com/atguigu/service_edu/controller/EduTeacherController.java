@@ -4,17 +4,12 @@ import com.atguigu.common_utils.Result;
 import com.atguigu.service_edu.pojo.EduTeacher;
 import com.atguigu.service_edu.service.EduTeacherService;
 import com.atguigu.service_edu.vo.param.PageParam;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.stream.events.EndDocument;
 import java.util.List;
 
 /**
@@ -35,7 +30,6 @@ public class EduTeacherController {
     @GetMapping("all")
     public Result findAllTeacher() {
         final List<EduTeacher> teacherList = eduTeacherService.list(null);
-
         return Result.success(teacherList);
     }
 
@@ -61,8 +55,27 @@ public class EduTeacherController {
     }
 
     @PostMapping("add")
+    @ApiOperation("添加教师")
     public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
         return eduTeacherService.save(eduTeacher)
+                ? Result.success(null)
+                : Result.fail();
+    }
+
+    @GetMapping("find/{id}")
+    @ApiOperation("根据id查询教师")
+    public Result findTeacherById(@PathVariable String id) {
+        final EduTeacher teacher = eduTeacherService.getById(id);
+
+        return teacher == null
+                ? Result.fail()
+                : Result.success(teacher);
+    }
+
+    @PutMapping("update")
+    @ApiOperation("修改教师信息")
+    public Result updateTeacher(@RequestBody EduTeacher teacher) {
+        return eduTeacherService.updateById(teacher)
                 ? Result.success(null)
                 : Result.fail();
     }
