@@ -2,6 +2,7 @@ package com.atguigu.service_edu.service.impl;
 
 import com.atguigu.common_utils.Result;
 import com.atguigu.service_edu.vo.param.PageParam;
+import com.atguigu.service_edu.vo.param.TeacherQueryParam;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +10,8 @@ import com.atguigu.service_edu.pojo.EduTeacher;
 import com.atguigu.service_edu.service.EduTeacherService;
 import com.atguigu.service_edu.mapper.EduTeacherMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +24,8 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     implements EduTeacherService{
 
     @Override
-    public Result pageListTeacher(PageParam pageParam) {
+    public Result pageListTeacher(@NotNull PageParam pageParam) {
+
         final Page<EduTeacher> eduTeacherPage = new Page<>(pageParam.getCurrent(), pageParam.getSize());
         final LambdaQueryWrapper<EduTeacher> queryWrapper = new LambdaQueryWrapper<>();
         final String name = pageParam.getName();
@@ -31,8 +35,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
 
         queryWrapper.like(name != null, EduTeacher::getName, name)
                 .eq(level != null, EduTeacher::getLevel, level)
-                .ge(StringUtils.isNotBlank(begin), EduTeacher::getGmtCreate, begin)
-                .le(StringUtils.isNotBlank(end), EduTeacher::getGmtCreate, end);
+                .between(StringUtils.isNotBlank(begin + end), EduTeacher::getGmtCreate, begin, end);
 
         final Page<EduTeacher> page = this.page(eduTeacherPage, queryWrapper);
 

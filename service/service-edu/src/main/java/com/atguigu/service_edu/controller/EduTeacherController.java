@@ -46,17 +46,24 @@ public class EduTeacherController {
             @PathVariable
             String id
     ) {
-        final boolean flag = eduTeacherService.removeById(id);
-
-        return flag ? Result.success(null) : Result.fail();
+        return eduTeacherService.removeById(id)
+                ? Result.success(null)
+                : Result.fail();
     }
 
 
     @ApiOperation("分页查询讲师")
     @PostMapping("page")
-    public Result pageListTeacher(@RequestBody @ApiParam("分页参数")
+    public Result pageListTeacher(@RequestBody(required = false)
+                                      @ApiParam("分页参数")
                                       PageParam pageParam) {
         return eduTeacherService.pageListTeacher(pageParam);
+    }
+
+    public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
+        return eduTeacherService.save(eduTeacher)
+                ? Result.success(null)
+                : Result.fail();
     }
 
 }
