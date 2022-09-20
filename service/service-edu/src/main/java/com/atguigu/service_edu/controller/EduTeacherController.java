@@ -60,6 +60,7 @@ public class EduTeacherController {
         return eduTeacherService.pageListTeacher(pageParam);
     }
 
+    @PostMapping("add")
     public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
         return eduTeacherService.save(eduTeacher)
                 ? Result.success(null)
