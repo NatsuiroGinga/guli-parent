@@ -11,6 +11,9 @@ spring:
     username: root
     password: '#2018iGwin'
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson: # 时间: 东八区
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 mybatis-plus:
   configuration:

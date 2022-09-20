@@ -2,6 +2,7 @@ package com.atguigu.service_edu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author ginga
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 15/9/2022 下午5:10
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.atguigu"})
 public class ServiceEduApplication {
 
     public static void main(String[] args) {

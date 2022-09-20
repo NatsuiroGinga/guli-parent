@@ -10,7 +10,9 @@
 	</parent>
 	<modules>
 		<module>service</module>
-	</modules>
+        <module>common</module>
+        <module>common/service-base</module>
+    </modules>
 	<groupId>com.atguigu</groupId>
 	<artifactId>guli-parent</artifactId>
 	<packaging>pom</packaging>

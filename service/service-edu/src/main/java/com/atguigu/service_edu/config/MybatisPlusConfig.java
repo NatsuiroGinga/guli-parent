@@ -1,6 +1,9 @@
 package com.atguigu.service_edu.config;
 
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,4 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan("com.atguigu.service_edu.mapper")
 public class MybatisPlusConfig {
+
+//    public MybatisPlusInterceptor
 }
