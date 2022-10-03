@@ -10,6 +10,7 @@ import com.atguigu.service_edu.pojo.EduTeacher;
 import com.atguigu.service_edu.service.EduTeacherService;
 import com.atguigu.service_edu.mapper.EduTeacherMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.naming.factory.BeanFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Service;
@@ -24,18 +25,19 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     implements EduTeacherService{
 
     @Override
-    public Result pageListTeacher(@NotNull PageParam pageParam) {
+    public Result pageListTeacher(Long current, Long limit, @NotNull PageParam pageParam) {
 
-        final Page<EduTeacher> eduTeacherPage = new Page<>(pageParam.getCurrent(), pageParam.getSize());
+        final Page<EduTeacher> eduTeacherPage = new Page<>(current, limit);
         final LambdaQueryWrapper<EduTeacher> queryWrapper = new LambdaQueryWrapper<>();
         final String name = pageParam.getName();
         final Integer level = pageParam.getLevel();
         final String begin = pageParam.getBegin();
         final String end = pageParam.getEnd();
 
-        queryWrapper.like(name != null, EduTeacher::getName, name)
+        queryWrapper.like(StringUtils.isNotBlank(name), EduTeacher::getName, name)
                 .eq(level != null, EduTeacher::getLevel, level)
-                .between(StringUtils.isNotBlank(begin + end), EduTeacher::getGmtCreate, begin, end);
+                .gt(StringUtils.isNotBlank(begin), EduTeacher::getGmtCreate, begin)
+                .lt(StringUtils.isNotBlank(end), EduTeacher::getGmtCreate, end);
 
         final Page<EduTeacher> page = this.page(eduTeacherPage, queryWrapper);
 

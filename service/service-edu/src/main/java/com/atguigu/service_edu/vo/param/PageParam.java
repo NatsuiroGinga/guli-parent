@@ -1,6 +1,5 @@
 package com.atguigu.service_edu.vo.param;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,12 +12,6 @@ import lombok.Data;
  */
 @Data
 public class PageParam {
-
-    @ApiModelProperty("当前页")
-    private Long current = 1L;
-
-    @ApiModelProperty("页内条数")
-    private Long size = 3L;
 
     @ApiModelProperty("教师名, 模糊查询")
     private String name;

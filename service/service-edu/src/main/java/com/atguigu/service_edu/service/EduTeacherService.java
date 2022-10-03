@@ -20,5 +20,5 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @author ginga
      * @Date 20/9/2022 下午5:07
      **/
-    Result pageListTeacher(PageParam pageParam);
+    Result pageListTeacher(Long current, Long limit, PageParam pageParam);
 }

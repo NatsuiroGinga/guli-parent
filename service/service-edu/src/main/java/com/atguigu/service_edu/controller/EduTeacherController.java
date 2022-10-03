@@ -47,11 +47,11 @@ public class EduTeacherController {
 
 
     @ApiOperation("分页查询讲师")
-    @PostMapping("page")
-    public Result pageListTeacher(@RequestBody(required = false)
-                                      @ApiParam("分页参数")
-                                      PageParam pageParam) {
-        return eduTeacherService.pageListTeacher(pageParam);
+    @PostMapping("pageTeacherCondition/{current}/{limit}")
+    public Result pageListTeacher(@ApiParam(value = "当前页", defaultValue = "1") @PathVariable Long current,
+                                  @ApiParam(value = "一页条数", defaultValue = "3") @PathVariable Long limit,
+                                  @RequestBody(required = false) @ApiParam("分页参数") PageParam pageParam) {
+        return eduTeacherService.pageListTeacher(current, limit, pageParam);
     }
 
     @PostMapping("add")

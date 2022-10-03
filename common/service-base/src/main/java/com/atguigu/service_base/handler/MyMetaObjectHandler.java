@@ -1,4 +1,4 @@
-package com.atguigu.service_base.config;
+package com.atguigu.service_base.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
