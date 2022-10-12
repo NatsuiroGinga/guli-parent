@@ -39,6 +39,8 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
                 .gt(StringUtils.isNotBlank(begin), EduTeacher::getGmtCreate, begin)
                 .lt(StringUtils.isNotBlank(end), EduTeacher::getGmtCreate, end);
 
+        queryWrapper.orderByDesc(EduTeacher::getGmtCreate);
+
         final Page<EduTeacher> page = this.page(eduTeacherPage, queryWrapper);
 
         return Result.success(page);

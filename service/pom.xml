@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>service-edu</module>
+		<module>service-oss</module>
 	</modules>
 	<parent>
 		<groupId>com.atguigu</groupId>
@@ -125,7 +126,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 		</dependency>
 	</dependencies>
 

@@ -39,7 +39,7 @@ public class EduLoginController {
         hashMap.put("roles", "[admin]");
         hashMap.put("name", "admin");
         hashMap.put("avatar",
-                "http://rhz1dknvc.hd-bkt.clouddn.com/bf5517ea-d147-4500-afa6-556af4ac4d9e.jpg");
+                "http://img.ottofans.top/bf5517ea-d147-4500-afa6-556af4ac4d9e.jpg");
 
         return Result.success(hashMap);
     }

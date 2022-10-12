@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,7 +46,6 @@ public class EduTeacherController {
                 : Result.fail();
     }
 
-
     @ApiOperation("分页查询讲师")
     @PostMapping("pageTeacherCondition/{current}/{limit}")
     public Result pageListTeacher(@ApiParam(value = "当前页", defaultValue = "1") @PathVariable Long current,
@@ -54,16 +54,16 @@ public class EduTeacherController {
         return eduTeacherService.pageListTeacher(current, limit, pageParam);
     }
 
-    @PostMapping("add")
     @ApiOperation("添加教师")
+    @PostMapping("add")
     public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
         return eduTeacherService.save(eduTeacher)
                 ? Result.success(null)
                 : Result.fail();
     }
 
-    @GetMapping("find/{id}")
     @ApiOperation("根据id查询教师")
+    @GetMapping("{id}")
     public Result findTeacherById(@PathVariable String id) {
         final EduTeacher teacher = eduTeacherService.getById(id);
 
@@ -72,8 +72,8 @@ public class EduTeacherController {
                 : Result.success(teacher);
     }
 
-    @PutMapping("update")
     @ApiOperation("修改教师信息")
+    @PutMapping("update")
     public Result updateTeacher(@RequestBody EduTeacher teacher) {
         return eduTeacherService.updateById(teacher)
                 ? Result.success(null)

@@ -1,0 +1,11 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: service-oss
+  profiles:
+    active: dev
+
+qiniu:
+  accessKey: sg-bO1aD89C33bw2_LqwatnPS9aOOoA6Fmieh65i
+  secretKey: bfai645S3prtMoKKDfBerJIxnHR4NV_It6FOE80C
