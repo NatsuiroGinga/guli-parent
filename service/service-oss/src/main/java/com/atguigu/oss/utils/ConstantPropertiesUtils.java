@@ -1,10 +1,7 @@
 package com.atguigu.oss.utils;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,13 +20,25 @@ public class ConstantPropertiesUtils implements InitializingBean {
     @Value("${qiniu.secretKey}")
     private String secretKey;
 
+    @Value("${qiniu.bucketName}")
+    private String bucketName;
+
+    @Value("${qiniu.endpoint}")
+    private String url;
+
     public static String ACCESS_KEY;
 
     public static String SECRET_KEY;
 
+    public static String BUCKET_NAME;
+
+    public static String URL;
+
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         ACCESS_KEY = accessKey;
         SECRET_KEY = secretKey;
+        BUCKET_NAME = bucketName;
+        URL = url;
     }
 }
