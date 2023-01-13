@@ -1,16 +1,17 @@
 package com.atguigu.service_edu.controller;
 
 import com.atguigu.common_utils.Result;
+import com.atguigu.service_base.aop.cache.ClearCache;
 import com.atguigu.service_edu.pojo.EduTeacher;
 import com.atguigu.service_edu.service.EduTeacherService;
-import com.atguigu.service_edu.vo.param.PageParam;
+import com.atguigu.service_edu.service.impl.EduTeacherServiceImpl;
+import com.atguigu.service_edu.vo.param.TeacherQueryParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,15 +48,16 @@ public class EduTeacherController {
     }
 
     @ApiOperation("分页查询讲师")
-    @PostMapping("pageTeacherCondition/{current}/{limit}")
+    @PostMapping("condition/{current}/{limit}")
     public Result pageListTeacher(@ApiParam(value = "当前页", defaultValue = "1") @PathVariable Long current,
-                                  @ApiParam(value = "一页条数", defaultValue = "3") @PathVariable Long limit,
-                                  @RequestBody(required = false) @ApiParam("分页参数") PageParam pageParam) {
-        return eduTeacherService.pageListTeacher(current, limit, pageParam);
+                                  @ApiParam(value = "一页条数", defaultValue = "10") @PathVariable Long limit,
+                                  @RequestBody(required = false) @ApiParam("分页参数") TeacherQueryParam teacherQueryParam) {
+        return eduTeacherService.listPages(current, limit, teacherQueryParam);
     }
 
     @ApiOperation("添加教师")
-    @PostMapping("add")
+    @PostMapping
+    @ClearCache(value = "listPages", target = EduTeacherServiceImpl.class)
     public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
         return eduTeacherService.save(eduTeacher)
                 ? Result.success(null)
@@ -73,7 +75,8 @@ public class EduTeacherController {
     }
 
     @ApiOperation("修改教师信息")
-    @PutMapping("update")
+    @PutMapping
+    @ClearCache(value = "listPages", target = EduTeacherServiceImpl.class)
     public Result updateTeacher(@RequestBody EduTeacher teacher) {
         return eduTeacherService.updateById(teacher)
                 ? Result.success(null)

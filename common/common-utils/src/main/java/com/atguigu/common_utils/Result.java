@@ -1,19 +1,20 @@
 package com.atguigu.common_utils;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * 统一返回结果
+ *
  * @author ginga
  * @version 1.0
  * @ClassName Result
  * @Date 20/9/2022 下午3:32
  */
 @Data
-@Builder
+@NoArgsConstructor
 public class Result {
 
     private boolean success;
@@ -29,6 +30,11 @@ public class Result {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    @NotNull
+    public static Result success() {
+        return success(null);
     }
 
     @NotNull
@@ -51,6 +57,12 @@ public class Result {
     @Contract(" -> new")
     public static Result fail() {
         return new Result(false, ResultCode.SUCCESS.getCode(), "fail", null);
+    }
+
+    @NotNull
+    @Contract("_ -> new")
+    public static Result fail(@NotNull ErrorInfo errorInfo) {
+        return new Result(false, errorInfo.getCode(), errorInfo.getMsg(), null);
     }
 
 }

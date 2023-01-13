@@ -1,4 +1,4 @@
-package com.atguigu.service_edu.config;
+package com.atguigu.service_base.config;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * MVC配置
+ *
  * @author ginga
  * @version 1.0
  * @ClassName WebMVCConfig

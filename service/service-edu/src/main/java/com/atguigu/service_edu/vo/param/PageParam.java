@@ -1,15 +1,18 @@
 package com.atguigu.service_edu.vo.param;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
  * 分页参数
+ *
  * @author ginga
  * @version 1.0
  * @ClassName PageParam
  * @Date 20/9/2022 下午4:27
  */
+@ApiModel(description = "分页参数")
 @Data
 public class PageParam {
 

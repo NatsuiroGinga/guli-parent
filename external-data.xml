@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <object-set>
+    <table path="guli_edu.edu_chapter">
+      <table path="guli_edu.edu_course" name="vfk_course_id" from="course_id" to="id"/>
+    </table>
+    <table path="guli_edu.edu_course">
+      <table path="guli_edu.edu_teacher" name="vfk_teacher_id" from="teacher_id" to="id"/>
+      <table path="guli_edu.edu_subject" name="vfk_subject_id" from="subject_id,subject_parent_id" to="id,id"/>
+    </table>
+    <table path="guli_edu.edu_course_collect">
+      <table path="guli_edu.edu_course" name="vfk_course_id" from="course_id" to="id"/>
+    </table>
+    <table path="guli_edu.edu_video">
+      <table path="guli_edu.edu_course" name="cfk_course_id" from="course_id" to="id"/>
+      <table path="guli_edu.edu_chapter" name="vfk_chapter_id" from="chapter_id" to="id"/>
+    </table>
+    <table path="guli_edu.edu_comment">
+      <table path="guli_edu.edu_course" name="vfk_course_id" from="course_id" to="id"/>
+      <table path="guli_edu.edu_teacher" name="cfk_teacher_id" from="teacher_id" to="id"/>
+    </table>
+  </object-set>
+</data>

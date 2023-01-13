@@ -1,15 +1,18 @@
 package com.atguigu.service_edu.vo.param;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
  * 登录参数
+ *
  * @author ginga
  * @version 1.0
  * @ClassName LoginParam
  * @Date 2/10/2022 上午11:09
  */
+@ApiModel(description = "登录参数")
 @Data
 public class LoginParam {
 

@@ -1,10 +1,15 @@
 server:
   port: 8002
+
 spring:
   application:
     name: service-oss
   profiles:
     active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 20.18.10.138:8848
 
 qiniu:
   accessKey: sg-bO1aD89C33bw2_LqwatnPS9aOOoA6Fmieh65i

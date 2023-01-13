@@ -2,8 +2,6 @@ package com.atguigu.service_edu.controller;
 
 import com.atguigu.common_utils.Result;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,12 +32,11 @@ public class EduLoginController {
     @ApiOperation("用户信息")
     @GetMapping("info")
     public Result info() {
-
         final HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("roles", "[admin]");
         hashMap.put("name", "admin");
         hashMap.put("avatar",
-                "http://img.ottofans.top/bf5517ea-d147-4500-afa6-556af4ac4d9e.jpg");
+                    "https://img.ottofans.top/bf5517ea-d147-4500-afa6-556af4ac4d9e.jpg");
 
         return Result.success(hashMap);
     }

@@ -1,5 +1,6 @@
 package com.atguigu.service_edu.vo.param;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import lombok.Data;
  * @ClassName TeacherQueryParam
  * @Date 20/9/2022 下午6:19
  */
+@ApiModel(description = "教师查询参数")
 @Data
 public class TeacherQueryParam {
 
