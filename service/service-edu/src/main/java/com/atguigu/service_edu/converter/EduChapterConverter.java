@@ -1,9 +1,9 @@
 package com.atguigu.service_edu.converter;
 
-import com.atguigu.service_edu.pojo.EduChapter;
 import com.atguigu.service_edu.vo.EduChapterVO;
 import com.atguigu.service_edu.vo.EduVideoVO;
 import com.atguigu.service_edu.vo.param.ChapterParam;
+import com.atguigu.service_pojo.pojo.EduChapter;
 import org.mapstruct.Mapper;
 
 import java.util.List;

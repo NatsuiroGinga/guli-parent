@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author ginga
@@ -66,4 +67,16 @@ public class Jackson {
             return null;
         }
     }
+
+    /**
+     * 将对象转换为map
+     *
+     * @param value 要转换的对象
+     * @return map
+     */
+    public Map<String, Object> bean2Map(Object value) {
+        return json2Bean(bean2Json(value), new TypeReference<Map<String, Object>>() {
+        });
+    }
+
 }

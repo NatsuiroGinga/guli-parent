@@ -1,11 +1,11 @@
 package com.atguigu.service_base.aop.cache;
 
-import com.atguigu.common_utils.CacheProperties;
+import com.atguigu.common_utils.cache.CacheProperties;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.atguigu.common_utils.CacheProperties.DEFAULT;
+import static com.atguigu.common_utils.cache.CacheProperties.DEFAULT;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -15,9 +15,9 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  * @author ginga
  * @since 6/1/2023 下午11:40
  */
-@Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+@Documented
 public @interface Cache {
 
     /**

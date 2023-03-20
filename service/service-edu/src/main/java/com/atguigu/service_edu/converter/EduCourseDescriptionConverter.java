@@ -1,7 +1,7 @@
 package com.atguigu.service_edu.converter;
 
-import com.atguigu.service_edu.pojo.EduCourseDescription;
 import com.atguigu.service_edu.vo.param.CourseInfoParam;
+import com.atguigu.service_pojo.pojo.EduCourseDescription;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

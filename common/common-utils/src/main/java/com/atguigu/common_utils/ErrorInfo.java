@@ -27,7 +27,25 @@ public enum ErrorInfo {
     DELETE_COURSE_ERROR(200013, "删除课程失败"),
     UPLOAD_VIDEO_ERROR(200014, "上传视频失败"),
     DELETE_VOD_ERROR(200015, "删除VOD失败"),
-    PARAMS_ARE_BLANK(200016, "参数为空");
+    PARAMS_ARE_BLANK(200016, "参数为空"),
+    SEND_MSM_ERROR(200017, "发送短信失败"),
+    CODE_IS_ERROR(200018, "验证码错误"),
+    LOGIN_ERROR(200019, "登陆失败, 用户名或密码错误"),
+    REGISTER_ERROR(200020, "注册失败"),
+    NOT_LOGIN(200021, "用户未登录"),
+    MEMBER_ALREADY_EXISTS(200022, "注册失败, 用户已存在"),
+    GET_VIDEO_AUTH_ERROR(200023, "获取视频凭证失败"),
+    MEMBER_NOT_EXISTS(200024, "用户不存在"),
+    ADD_ORDER_ERROR(200025, "添加订单失败"),
+    COURSE_NOT_EXISTS(200026, "课程不存在"),
+    TEACHER_NOT_EXISTS(200027, "教师不存在"),
+    ORDER_NOT_EXISTS(200028, "订单不存在"),
+    ORDER_ALREADY_PAID(200029, "订单已支付"),
+    TOKEN_IS_INVALID(200030, "token非法"),
+    PARAMS_ARE_INVALID(200031, "参数非法"),
+    STATISTIC_ALREADY_EXISTS(200032, "该日期已被统计过"),
+    STATISTIC_FAILED(200033, "统计分析失败"),
+    STATISTIC_NOT_EXISTS(200034, "该日统计不存在");
     /**
      * 错误码
      */

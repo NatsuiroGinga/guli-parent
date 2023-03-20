@@ -1,7 +1,7 @@
 package com.atguigu.service_edu.converter;
 
-import com.atguigu.service_edu.pojo.EduSubject;
 import com.atguigu.service_edu.vo.EduSubjectVO;
+import com.atguigu.service_pojo.pojo.EduSubject;
 import org.mapstruct.Mapper;
 
 import java.util.List;

@@ -43,4 +43,10 @@ public class VodController {
         return vodService.deleteBatch(videoIdList);
     }
 
+    @ApiOperation("获取视频凭证")
+    @GetMapping("auth/{id}")
+    public Result auth(@PathVariable String id) {
+        return vodService.getAuth(id);
+    }
+
 }

@@ -1,0 +1,9 @@
+sms:
+  region: cn-shanghai
+  sign-name: 阿里云短信测试
+  template-code: SMS_154950909
+  endpoint: dysmsapi.aliyuncs.com
+  access:
+    key:
+      id: LTAI5tDQTYAkAutbkkYatxA1
+      secret: N5Jk8TD7ANH2j3Xx5YRGnE7zAeuGu6

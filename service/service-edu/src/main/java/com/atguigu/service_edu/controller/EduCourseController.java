@@ -55,4 +55,10 @@ public class EduCourseController {
         return courseService.delete(id);
     }
 
+    @ApiOperation("获取课程信息")
+    @GetMapping("{id}")
+    public Result detail(@PathVariable String id) {
+        return courseService.detail(id);
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.atguigu.service_edu.service.mapper;
 
-import com.atguigu.service_edu.dto.CoursePublishVO;
 import com.atguigu.service_edu.mapper.EduCourseMapper;
+import com.atguigu.service_edu.vo.CoursePublishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

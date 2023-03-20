@@ -3,20 +3,22 @@ package com.atguigu.service_edu.service.impl;
 import com.atguigu.common_utils.Result;
 import com.atguigu.service_base.aop.cache.Cache;
 import com.atguigu.service_base.aop.cache.ClearCache;
+import com.atguigu.service_base.aop.statistic.Statistic;
+import com.atguigu.service_base.exceptionhandler.exception.GuliException;
 import com.atguigu.service_base.util.CourseStatus;
 import com.atguigu.service_edu.converter.EduCourseConverter;
 import com.atguigu.service_edu.converter.EduCourseDescriptionConverter;
-import com.atguigu.service_edu.dto.CoursePublishVO;
 import com.atguigu.service_edu.mapper.EduChapterMapper;
 import com.atguigu.service_edu.mapper.EduCourseDescriptionMapper;
 import com.atguigu.service_edu.mapper.EduCourseMapper;
 import com.atguigu.service_edu.mapper.EduVideoMapper;
 import com.atguigu.service_edu.mapper.manager.EduVideoManager;
-import com.atguigu.service_edu.pojo.EduCourse;
-import com.atguigu.service_edu.pojo.EduCourseDescription;
 import com.atguigu.service_edu.service.EduCourseService;
+import com.atguigu.service_edu.vo.CoursePublishVO;
 import com.atguigu.service_edu.vo.param.CourseInfoParam;
 import com.atguigu.service_edu.vo.param.CourseQueryParam;
+import com.atguigu.service_pojo.pojo.EduCourse;
+import com.atguigu.service_pojo.pojo.EduCourseDescription;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -52,7 +54,8 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     private final EduVideoManager videoManager;
 
-    @Transactional
+    @Statistic
+    @Transactional(rollbackFor = GuliException.class)
     @Override
     public Result add(@NotNull CourseInfoParam courseInfoParam) {
         final String title = courseInfoParam.getTitle();
@@ -71,7 +74,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         final EduCourseDescription courseDescription = courseDescriptionConverter.toEdCourseDescription(courseInfoParam);
         final String courseId = course.getId();
         courseDescription.setId(courseId);
-        courseDescriptionMapper.insert(courseDescription);
+        if (courseDescriptionMapper.insert(courseDescription) == 0) {
+            throw new GuliException(ADD_COURSE_ERROR.getCode(), ADD_COURSE_ERROR.getMsg());
+        }
 
         return Result.success(courseId);
     }
@@ -113,19 +118,27 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     }
 
     @ClearCache("listPages")
-    @Transactional
+    @Transactional(rollbackFor = GuliException.class)
     @Override
     public Result delete(String id) {
         // 1 根据课程id删除阿里云视频和小节
         videoManager.deleteVideoByCourseId(id);
         // 2 根据课程id删除章节
-        chapterMapper.deleteByCourseId(id);
+        if (!chapterMapper.deleteByCourseId(id)) {
+            throw new GuliException(DELETE_CHAPTER_ERROR.getCode(), DELETE_CHAPTER_ERROR.getMsg());
+        }
         // 3 根据课程id删除课程和课程描述
         if (courseDescriptionMapper.deleteById(id) == 0 || !this.removeById(id)) {
-            return Result.fail(DELETE_COURSE_ERROR);
+            throw new GuliException(DELETE_CHAPTER_ERROR.getCode(), DELETE_CHAPTER_ERROR.getMsg());
         }
 
         return Result.success();
+    }
+
+    @Override
+    public Result detail(String id) {
+        final EduCourse course = this.getById(id);
+        return Result.success(course);
     }
 }
 

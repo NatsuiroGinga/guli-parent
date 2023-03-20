@@ -1,8 +1,8 @@
 package com.atguigu.service_edu.service;
 
 import com.atguigu.common_utils.Result;
-import com.atguigu.service_edu.pojo.EduSubject;
 import com.atguigu.service_edu.vo.param.ExcelSubjectParam;
+import com.atguigu.service_pojo.pojo.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

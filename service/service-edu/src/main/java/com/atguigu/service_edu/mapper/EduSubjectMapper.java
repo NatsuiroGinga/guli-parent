@@ -1,6 +1,6 @@
 package com.atguigu.service_edu.mapper;
 
-import com.atguigu.service_edu.pojo.EduSubject;
+import com.atguigu.service_pojo.pojo.EduSubject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 

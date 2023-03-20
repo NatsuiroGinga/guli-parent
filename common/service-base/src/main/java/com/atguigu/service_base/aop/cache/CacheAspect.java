@@ -1,6 +1,10 @@
 package com.atguigu.service_base.aop.cache;
 
-import com.atguigu.common_utils.*;
+import com.atguigu.common_utils.Jackson;
+import com.atguigu.common_utils.Result;
+import com.atguigu.common_utils.cache.CacheProperties;
+import com.atguigu.common_utils.cache.CacheUtils;
+import com.atguigu.common_utils.cache.ClearCacheTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,9 +21,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static com.atguigu.common_utils.CacheProperties.DEFAULT;
 import static com.atguigu.common_utils.ErrorInfo.CACHE_ERROR;
 import static com.atguigu.common_utils.ErrorInfo.CLEAR_CACHE_ERROR;
+import static com.atguigu.common_utils.cache.CacheProperties.DEFAULT;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**

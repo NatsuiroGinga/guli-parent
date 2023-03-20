@@ -1,8 +1,8 @@
 package com.atguigu.service_edu.converter;
 
-import com.atguigu.service_edu.pojo.EduVideo;
 import com.atguigu.service_edu.vo.EduVideoVO;
 import com.atguigu.service_edu.vo.param.VideoParam;
+import com.atguigu.service_pojo.pojo.EduVideo;
 import org.mapstruct.Mapper;
 
 import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;

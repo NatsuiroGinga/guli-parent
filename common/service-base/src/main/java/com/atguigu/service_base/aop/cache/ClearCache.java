@@ -1,10 +1,11 @@
 package com.atguigu.service_base.aop.cache;
 
-import com.atguigu.common_utils.ClearCacheTime;
+import com.atguigu.common_utils.cache.ClearCacheTime;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
-import static com.atguigu.common_utils.ClearCacheTime.BEFORE;
+import static com.atguigu.common_utils.cache.ClearCacheTime.BEFORE;
 
 /**
  * 清空缓存
@@ -20,7 +21,8 @@ public @interface ClearCache {
     /**
      * methodName的别名
      */
-    String value();
+    @AliasFor("methodName")
+    String value() default "";
 
     /**
      * methodName 所属的类, 不能写接口, 必须是具体的实现类

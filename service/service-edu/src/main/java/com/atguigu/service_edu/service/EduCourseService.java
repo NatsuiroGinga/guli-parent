@@ -1,9 +1,9 @@
 package com.atguigu.service_edu.service;
 
 import com.atguigu.common_utils.Result;
-import com.atguigu.service_edu.pojo.EduCourse;
 import com.atguigu.service_edu.vo.param.CourseInfoParam;
 import com.atguigu.service_edu.vo.param.CourseQueryParam;
+import com.atguigu.service_pojo.pojo.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -45,4 +45,12 @@ public interface EduCourseService extends IService<EduCourse> {
      * @param id 课程id
      */
     Result delete(String id);
+
+    /**
+     * 获取课程信息
+     *
+     * @param id 课程id
+     * @return 课程信息
+     */
+    Result detail(String id);
 }

@@ -2,7 +2,7 @@ package com.atguigu.service_edu.mapper.manager;
 
 import com.atguigu.service_edu.client.VodClient;
 import com.atguigu.service_edu.mapper.EduVideoMapper;
-import com.atguigu.service_edu.pojo.EduVideo;
+import com.atguigu.service_pojo.pojo.EduVideo;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import lombok.RequiredArgsConstructor;

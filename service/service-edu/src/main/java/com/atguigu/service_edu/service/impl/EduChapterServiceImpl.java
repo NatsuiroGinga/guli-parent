@@ -1,18 +1,16 @@
 package com.atguigu.service_edu.service.impl;
 
 import com.atguigu.common_utils.Result;
-import com.atguigu.service_base.aop.cache.Cache;
-import com.atguigu.service_base.aop.cache.ClearCache;
 import com.atguigu.service_edu.converter.EduChapterConverter;
 import com.atguigu.service_edu.converter.EduVideoConverter;
 import com.atguigu.service_edu.mapper.EduChapterMapper;
 import com.atguigu.service_edu.mapper.EduVideoMapper;
-import com.atguigu.service_edu.pojo.EduChapter;
-import com.atguigu.service_edu.pojo.EduVideo;
 import com.atguigu.service_edu.service.EduChapterService;
 import com.atguigu.service_edu.vo.EduChapterVO;
 import com.atguigu.service_edu.vo.EduVideoVO;
 import com.atguigu.service_edu.vo.param.ChapterParam;
+import com.atguigu.service_pojo.pojo.EduChapter;
+import com.atguigu.service_pojo.pojo.EduVideo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.atguigu.common_utils.ErrorInfo.*;
-import static java.util.concurrent.TimeUnit.MINUTES;
 
 /**
  * @author 17400
@@ -42,7 +39,6 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
 
     private final EduVideoConverter videoConverter;
 
-    @Cache(timeout = 5, timeUnit = MINUTES)
     @Override
     public Result listCourseOutline(String courseId) {
         // 1. 根据课程id查询课程章节
@@ -70,7 +66,6 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         return Result.success(chapterVOList);
     }
 
-    @ClearCache("listCourseOutline")
     @Override
     public Result add(@NotNull ChapterParam chapterParam) {
         final String title = chapterParam.getTitle();
@@ -81,7 +76,6 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         return this.save(chapter) ? Result.success() : Result.fail(ADD_CHAPTER_ERROR);
     }
 
-    @ClearCache("listCourseOutline")
     @Override
     public Result updateById(@NotNull ChapterParam chapterParam) {
         final String title = chapterParam.getTitle();

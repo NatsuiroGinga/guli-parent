@@ -13,7 +13,7 @@ import java.util.List;
  * @author ginga
  * @since 13/1/2023 下午2:34
  */
-@FeignClient("service-vod")
+@FeignClient(value = "service-vod", path = "/edu-vod/video", fallback = VodFileDegradeFeignClient.class)
 public interface VodClient {
 
     /**
@@ -21,7 +21,7 @@ public interface VodClient {
      *
      * @param id 视频id
      */
-    @DeleteMapping("edu-vod/video/{id}")
+    @DeleteMapping("{id}")
     Result delete(@PathVariable("id") String id);
 
     /**
@@ -29,7 +29,7 @@ public interface VodClient {
      *
      * @param videoIdList 视频id集合
      */
-    @DeleteMapping("edu-vod/video/batch")
+    @DeleteMapping("batch")
     Result deleteBatch(@ApiParam("视频id集合")
                        @RequestParam("videoIdList") List<String> videoIdList);
 

@@ -1,8 +1,8 @@
 package com.atguigu.service_edu.service;
 
 import com.atguigu.common_utils.Result;
-import com.atguigu.service_edu.pojo.EduVideo;
 import com.atguigu.service_edu.vo.param.VideoParam;
+import com.atguigu.service_pojo.pojo.EduVideo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

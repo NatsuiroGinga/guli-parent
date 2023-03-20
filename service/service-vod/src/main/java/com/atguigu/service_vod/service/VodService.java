@@ -31,4 +31,12 @@ public interface VodService {
      * @param videoIdList 视频id集合
      */
     Result deleteBatch(List<String> videoIdList);
+
+    /**
+     * 获取视频凭证
+     *
+     * @param id 视频id
+     * @return 视频凭证
+     */
+    Result getAuth(String id);
 }

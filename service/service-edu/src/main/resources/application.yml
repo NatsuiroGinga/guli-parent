@@ -32,7 +32,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 20.18.10.138:8848
+        server-addr: 47.104.235.180:8848
 
 mybatis-plus:
   configuration:
@@ -40,3 +40,7 @@ mybatis-plus:
   global-config:
     db-config:
       logic-delete-field: deleted
+
+feign:
+  hystrix:
+    enabled: true

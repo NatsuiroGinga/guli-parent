@@ -60,6 +60,6 @@ public class ThreadPoolConfig implements AsyncConfigurer {
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (ex, method, params) ->
-                log.error("线程池执行任务发送未知错误, 执行方法：{}", method.getName(), ex);
+                log.error("线程池执行任务发送未知错误, 执行方法：{}", method, ex);
     }
 }

@@ -3,20 +3,25 @@ package com.atguigu.service_vod.manager;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.http.ProtocolType;
+import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
-import com.atguigu.common_utils.ErrorInfo;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.atguigu.service_base.exceptionhandler.exception.GuliException;
-import lombok.RequiredArgsConstructor;
+import com.atguigu.service_vod.vo.VideoAuthVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.io.InputStream;
 
-import static com.atguigu.service_vod.util.VODProperties.ACCESS_KEY_ID;
-import static com.atguigu.service_vod.util.VODProperties.ACCESS_KEY_SECRET;
+import static com.atguigu.common_utils.ErrorInfo.DELETE_VOD_ERROR;
+import static com.atguigu.service_vod.util.VODProperties.*;
 
 /**
  * @author ginga
@@ -24,11 +29,16 @@ import static com.atguigu.service_vod.util.VODProperties.ACCESS_KEY_SECRET;
  */
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class VodManager {
 
-    private final IAcsClient client;
-
+    /**
+     * 上传视频到阿里云
+     *
+     * @param title       视频标题
+     * @param fileName    文件名
+     * @param inputStream 文件流
+     * @return 视频id
+     */
     public String uploadStream(String title, String fileName, InputStream inputStream) {
         UploadStreamRequest request = new UploadStreamRequest(ACCESS_KEY_ID, ACCESS_KEY_SECRET,
                                                               title, fileName, inputStream);
@@ -60,14 +70,51 @@ public class VodManager {
      */
     @Async
     public void deleteVideo(String videoIds) {
+        final DefaultProfile profile = DefaultProfile.getProfile(REGION_ID, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        final DefaultAcsClient client = new DefaultAcsClient(profile);
         final DeleteVideoRequest request = new DeleteVideoRequest();
         request.setVideoIds(videoIds);
+        log.info("开始删除视频...");
 
         try {
             client.getAcsResponse(request);
+            log.info("删除视频成功!");
         } catch (ClientException e) {
+            log.error("删除视频失败!");
             e.printStackTrace();
-            throw new GuliException(ErrorInfo.DELETE_VOD_ERROR);
+            throw new GuliException(DELETE_VOD_ERROR);
+        }
+    }
+
+    /**
+     * 获取视频凭证
+     *
+     * @param id 视频id
+     * @return 视频播放凭证
+     */
+    public VideoAuthVo getAuthById(String id) {
+        DefaultProfile profile = DefaultProfile.getProfile(REGION_ID,
+                                                           ACCESS_KEY_ID,
+                                                           ACCESS_KEY_SECRET);
+        IAcsClient client = new DefaultAcsClient(profile);
+        final GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+        request.setVideoId(id);
+        request.setSysProtocol(ProtocolType.HTTPS);
+
+        try {
+            final GetVideoPlayAuthResponse authResponse = client.getAcsResponse(request);
+            final GetVideoPlayAuthResponse.VideoMeta videoMeta = authResponse.getVideoMeta();
+            final String coverURL = videoMeta.getCoverURL();
+            Assert.notNull(authResponse, "response must not be null!");
+            final String playAuth = authResponse.getPlayAuth();
+            log.info("auth: {}", playAuth);
+            final VideoAuthVo videoAuthVo = new VideoAuthVo();
+            videoAuthVo.setPlayAuth(playAuth);
+            videoAuthVo.setCover(coverURL);
+            return videoAuthVo;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new GuliException(DELETE_VOD_ERROR);
         }
     }
 

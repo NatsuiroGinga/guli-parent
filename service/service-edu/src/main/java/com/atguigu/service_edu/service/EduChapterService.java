@@ -1,8 +1,8 @@
 package com.atguigu.service_edu.service;
 
 import com.atguigu.common_utils.Result;
-import com.atguigu.service_edu.pojo.EduChapter;
 import com.atguigu.service_edu.vo.param.ChapterParam;
+import com.atguigu.service_pojo.pojo.EduChapter;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

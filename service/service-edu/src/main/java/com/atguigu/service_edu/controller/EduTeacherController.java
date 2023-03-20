@@ -2,10 +2,10 @@ package com.atguigu.service_edu.controller;
 
 import com.atguigu.common_utils.Result;
 import com.atguigu.service_base.aop.cache.ClearCache;
-import com.atguigu.service_edu.pojo.EduTeacher;
 import com.atguigu.service_edu.service.EduTeacherService;
 import com.atguigu.service_edu.service.impl.EduTeacherServiceImpl;
 import com.atguigu.service_edu.vo.param.TeacherQueryParam;
+import com.atguigu.service_pojo.pojo.EduTeacher;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

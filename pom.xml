@@ -48,6 +48,8 @@
         <fastjson.version>1.2.28</fastjson.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections.version>3.2.2</commons-collections.version>
+        <hutool.version>5.8.11</hutool.version>
+        <alibabacloud-dysmsapi20170525.version>2.0.22</alibabacloud-dysmsapi20170525.version>
     </properties>
 
     <dependencyManagement>
@@ -193,6 +195,24 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--Hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-jwt</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>alibabacloud-dysmsapi20170525</artifactId>
+                <version>${alibabacloud-dysmsapi20170525.version}</version>
             </dependency>
 
         </dependencies>

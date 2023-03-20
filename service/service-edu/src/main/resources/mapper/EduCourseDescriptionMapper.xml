@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.service_edu.mapper.EduCourseDescriptionMapper">
 
-    <resultMap id="BaseResultMap" type="com.atguigu.service_edu.pojo.EduCourseDescription">
+    <resultMap id="BaseResultMap" type="com.atguigu.service_pojo.pojo.EduCourseDescription">
         <id property="id" column="id" jdbcType="CHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="deleted" column="is_deleted" jdbcType="TINYINT"/>

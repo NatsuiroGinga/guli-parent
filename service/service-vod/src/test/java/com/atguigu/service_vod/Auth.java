@@ -21,7 +21,7 @@ public class Auth {
                                                            "U8CPIkyeqRaLKHmpbgNLIAFNHGnUAc");
         IAcsClient client = new DefaultAcsClient(profile);
         final GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
-        request.setVideoId("a05cdbc091bd71ed87836733a78e0102");
+        request.setVideoId("c363b130963f71ed800d6632b68f0102");
         request.setSysProtocol(ProtocolType.HTTPS);
 
         try {

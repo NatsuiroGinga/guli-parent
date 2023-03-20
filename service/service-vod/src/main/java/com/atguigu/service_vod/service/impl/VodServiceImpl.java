@@ -1,9 +1,11 @@
 package com.atguigu.service_vod.service.impl;
 
 import com.atguigu.common_utils.Result;
+import com.atguigu.service_base.aop.statistic.Statistic;
 import com.atguigu.service_base.exceptionhandler.exception.GuliException;
 import com.atguigu.service_vod.manager.VodManager;
 import com.atguigu.service_vod.service.VodService;
+import com.atguigu.service_vod.vo.VideoAuthVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -71,5 +73,16 @@ public class VodServiceImpl implements VodService {
         }
 
         return Result.success();
+    }
+
+    @Statistic
+    @Override
+    public Result getAuth(String id) {
+        try {
+            final VideoAuthVo videoAuthVo = vodManager.getAuthById(id);
+            return Result.success(videoAuthVo);
+        } catch (GuliException e) {
+            return Result.fail(e.getCode(), e.getMsg());
+        }
     }
 }
